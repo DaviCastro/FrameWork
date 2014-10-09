@@ -1,4 +1,4 @@
-package br.com.conexao;
+/*package br.com.conexao;
 
 import com.db4o.ObjectContainer;
 
@@ -16,3 +16,4 @@ public class Db4oConexao {
 	}
 	
 }
+*/

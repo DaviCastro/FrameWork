@@ -1,4 +1,4 @@
-package br.com.factory;
+/*package br.com.factory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,3 +38,4 @@ public class Db4oConexaoFactory {
 	}
 
 }
+*/

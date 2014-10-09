@@ -1,4 +1,4 @@
-package br.com.dao;
+/*package br.com.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -33,25 +33,25 @@ public class Db4oDao<T> implements Dao<T> {
 
 	}
 
-	/**
+	*//**
 	 * Metodo que faz insert e update no banco. Se a referencia do objeto
 	 * existir no banco realiza update senn�o insert
 	 * 
 	 * @param entity
-	 */
+	 *//*
 	public void save(T entity) {
 		ObjectContainer sessao = conexao.getSessao();
 		sessao.store(entity);
 		sessao.close();
 	}
 
-	/**
+	*//**
 	 * Metodo que retorna o resultado do metodo get, apenas com um nome mais
 	 * legivel
 	 * 
 	 * @param entity
 	 * @return
-	 * */
+	 * *//*
 	public List<T> findByExample(T entity) {
 
 		ObjectContainer sessao = conexao.getSessao();
@@ -60,23 +60,23 @@ public class Db4oDao<T> implements Dao<T> {
 		return retorno;
 	}
 
-	/**
+	*//**
 	 * Metodo que retorna apenas UM resultado.
 	 * 
 	 * @param entity
 	 * @return
-	 * */
+	 * *//*
 	public T findOneByExample(T entity) {
 		if (findByExample(entity) != null)
 			return findByExample(entity).get(0);
 		return null;
 	}
 
-	/**
+	*//**
 	 * Recupera a lista completa de objetos de acordo com o tipo atual do T
 	 * 
 	 * @return
-	 */
+	 *//*
 	public List<T> findAll() {
 		ObjectContainer sessao = conexao.getSessao();
 		List<T> retorno = sessao.queryByExample(getTypeClass());
@@ -85,11 +85,11 @@ public class Db4oDao<T> implements Dao<T> {
 
 	}
 
-	/**
+	*//**
 	 * Remocao do objeto do banco.
 	 * 
 	 * @param entity
-	 */
+	 *//*
 	public void remove(T entity) {
 		ObjectContainer sessao = conexao.getSessao();
 		sessao.delete(entity);
@@ -98,10 +98,10 @@ public class Db4oDao<T> implements Dao<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	/**
+	*//**
 	 * Recupera o tipo da classe 
 	 * @return
-	 */
+	 *//*
 	private Class<T> getTypeClass() {
 		Class<T> clazz = (Class<T>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
@@ -133,3 +133,4 @@ public class Db4oDao<T> implements Dao<T> {
 
 
 }
+*/

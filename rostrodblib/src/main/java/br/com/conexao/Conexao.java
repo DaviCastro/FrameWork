@@ -1,4 +1,4 @@
-package br.com.conexao;
+/*package br.com.conexao;
 
 import br.com.exception.DbLibException;
 
@@ -38,3 +38,4 @@ public class Conexao {
 	}
 
 }
+*/

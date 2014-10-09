@@ -2,12 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<repositories>
-		<repository>
-			<id>source.db4o</id>
-			<url>http://source.db4o.com/maven</url>
-		</repository>
-	</repositories>
+
 
 	<groupId>br.com.rostroweb</groupId>
 	<artifactId>rostrodblib</artifactId>
@@ -27,12 +22,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>com.db4o</groupId>
 			<artifactId>db4o-full-java5</artifactId>
 			<version>8.1-SNAPSHOT</version>
 		</dependency>
-
+ -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
