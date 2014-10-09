@@ -1,20 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-
-
 	<groupId>br.com.rostroweb</groupId>
 	<artifactId>rostrodblib</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>RostroDbLib</name>
-	<url>http://maven.apache.org</url>
-
+	<prerequisites>
+		<maven>3.1.0</maven>
+	</prerequisites>
 	<properties>
+		<!-- Project -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<!-- Dependencies -->
+		<version.dependency.javaee>7.0</version.dependency.javaee>
+		<!-- Plugins -->
+		<version.plugin.compiler>3.1</version.plugin.compiler>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -22,12 +26,8 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>com.db4o</groupId>
-			<artifactId>db4o-full-java5</artifactId>
-			<version>8.1-SNAPSHOT</version>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>com.db4o</groupId> <artifactId>db4o-full-java5</artifactId> 
+			<version>8.1-SNAPSHOT</version> </dependency> -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -110,10 +110,35 @@
 			<version>1.1-rev-1</version>
 		</dependency>
 
-		
-
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${version.dependency.javaee}</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.plugin.compiler}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<debug>true</debug>
+					<optimize>true</optimize>
+				</configuration>
+			</plugin>
+
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
+				<version>${version.plugin.war}</version> <configuration> <failOnMissingWebXml>false</failOnMissingWebXml> 
+				</configuration> </plugin> -->
+		</plugins>
+	</build>
+
 
 
 

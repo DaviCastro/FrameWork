@@ -3,6 +3,11 @@ package br.com.service;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
+
+import br.com.annotation.Teste;
 import br.com.dao.Dao;
 import br.com.dao.DaoFactory;
 import br.com.dao.Identifiable;
@@ -21,6 +26,8 @@ import br.com.util.OrderUtil;
  */
 public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 		implements Service<T> {
+	@Inject
+	@Teste
 	protected DAO dao;
 
 	public GenericService() {
@@ -29,7 +36,7 @@ public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 		 * Recupera a referencia do dao<T> com base no objeto gerado na classe
 		 * filha;
 		 */
-		dao = createDao();
+		//dao = createDao();
 	}
 
 	/**
@@ -89,6 +96,7 @@ public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 	/**
 	 * Metodo que chama o dao em questao para save.
 	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean save(T entity) throws DbLibException {
 
 		consiste();
@@ -103,6 +111,7 @@ public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 	/**
 	 * Metodo que chama o dao em questao para delete
 	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean delete(T entity) throws DbLibException {
 
 		dao.remove(entity);

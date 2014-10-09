@@ -4,6 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -14,7 +15,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 
 import br.com.exception.DbLibException;
-import br.com.factory.HbnConexaoFactory;
 import br.com.util.OrderUtil;
 
 /**
@@ -25,7 +25,7 @@ import br.com.util.OrderUtil;
  * @param <T>
  */
 public class HbnDao<T> implements Dao<T> {
-
+	@PersistenceContext
 	protected EntityManager conexao;
 	private Class<T> persistentClass;
 
@@ -41,9 +41,7 @@ public class HbnDao<T> implements Dao<T> {
 	 * @throws DbLibException
 	 */
 	public HbnDao(String banco) throws DbLibException {
-
-		conexao = HbnConexaoFactory.adquirirConexao(banco);
-
+		
 	}
 
 	/**
@@ -54,11 +52,8 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public void save(T entity) throws DbLibException {
 		try {
-
-			conexao.getTransaction().begin();
 			conexao.persist(entity);
-			conexao.flush();
-			conexao.getTransaction().commit();
+			conexao.flush();;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DbLibException("Erro ao executar metodo save", e);
@@ -156,11 +151,9 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public void remove(T entity) throws DbLibException {
 		try {
-			conexao.getTransaction().begin();
 			entity = conexao.merge(entity);
 			conexao.remove(entity);
 			conexao.flush();
-			conexao.getTransaction().commit();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DbLibException("Erro ao executar metodo remove", e);
@@ -205,10 +198,8 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public void merge(T entity) throws DbLibException {
 		try {
-			conexao.getTransaction().begin();
 			conexao.merge(entity);
 			conexao.flush();
-			conexao.getTransaction().commit();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DbLibException("Erro ao executar metodo merge", e);

@@ -3,10 +3,13 @@ package br.com.dao;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 
+import javax.enterprise.inject.Produces;
+
 import org.apache.log4j.Logger;
 
 import br.com.annotation.Db4oDao;
 import br.com.annotation.HbnDao;
+import br.com.annotation.Teste;
 
 /**
  * 
@@ -48,11 +51,13 @@ public class DaoFactory {
 	}
 
 	@SuppressWarnings({ "unchecked" })
-	public <T> T getDao(T entity) {
+	@Produces
+	@Teste
+	public  <T> Dao<T> getDao(T entity) {
 
 		try {
 
-			return (T) (annotation.getName().equals(HbnDao.class.getName()) ? entity
+			return (Dao<T>) (annotation.getName().equals(HbnDao.class.getName()) ? entity
 					.getClass()
 					.getAnnotation(HbnDao.class)
 					.hbnDao()
