@@ -1,36 +1,40 @@
 package main.teste;
 
-import br.com.exception.DbLibException;
-import br.com.pojo.Usuario;
-import br.com.service.UsuarioServiceImpl;
+import java.io.IOException;
 
-public class MainTeste {
+import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-	/**
-	 * @param args
-	 * @throws DbLibException 
-	 */
-	public static void main(String[] args) throws DbLibException {
-		
-		
-		UsuarioServiceImpl a = new UsuarioServiceImpl();
-		
-		
-		
-		a.save(new Usuario());
-		
+@WebServlet("/teste")
+public class MainTeste extends HttpServlet {
 	
-//		ExemploDao exemplo = DaoFactory.getInstance().getExemploDao();
-//		
-//		for(int i = 0 ; i<=10 ; i++){
-//			Exemplo entity = new Exemplo("PESSOA"+i);
-//			exemplo.save(entity);
-//		}
-//		
-//		System.out.println(exemplo.findAll());
-//		
-//		
-//
+
+	
+	@Inject
+	Main a;
+
+	private static final long serialVersionUID = 1L;
+
+	@SuppressWarnings("unused")
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		
+		a.teste();
+
+		super.doGet(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doPost(req, resp);
 	}
 
 }

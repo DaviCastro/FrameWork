@@ -27,8 +27,6 @@ import br.com.scheduler.ProcessSchedule.Status;
 import br.com.service.Service;
 import br.com.service.ServiceFactory;
 
-import com.mysql.jdbc.log.Log;
-
 /**
  * @author davidson
  * @version 1.1 Class responsible to log and take some actions according to

@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import br.com.annotation.HbnDao;
@@ -26,6 +29,7 @@ import br.com.service.UsuarioServiceImpl;
 @Table(name = "usuario")
 @Service(service = UsuarioServiceImpl.class)
 @HbnDao(hbnDao = HbnUsuarioDao.class)
+@Stateless
 public class Usuario implements Serializable, Identifiable {
 
 	/**
@@ -36,6 +40,11 @@ public class Usuario implements Serializable, Identifiable {
 	@GeneratedValue()
 	@Column(name = "id")
 	private Integer id;
+	
+	@Inject
+	@Transient
+	TesteDois teste;
+	
 
 	@Column(name = "login")
 	private String login;
@@ -132,6 +141,11 @@ public class Usuario implements Serializable, Identifiable {
 
 	public void setDataConfirmacaoCadastro(Date dataConfirmacaoCadastro) {
 		this.dataConfirmacaoCadastro = dataConfirmacaoCadastro;
+	}
+	
+	
+	public void x(){
+		teste.sayWorld();
 	}
 
 }

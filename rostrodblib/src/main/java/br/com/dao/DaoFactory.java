@@ -3,13 +3,14 @@ package br.com.dao;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
 import br.com.annotation.Db4oDao;
 import br.com.annotation.HbnDao;
-import br.com.annotation.Teste;
 
 /**
  * 
@@ -34,6 +35,8 @@ public class DaoFactory {
 	// private static String parametro = "DB4O";
 	private static String parametro = "HIBERNATE";
 	private static Class<? extends Annotation> annotation;
+	@PersistenceContext
+	EntityManager s;
 
 	public static DaoFactory getInstance() throws InstantiationException,
 			IllegalAccessException {
@@ -51,8 +54,6 @@ public class DaoFactory {
 	}
 
 	@SuppressWarnings({ "unchecked" })
-	@Produces
-	@Teste
 	public  <T> Dao<T> getDao(T entity) {
 
 		try {

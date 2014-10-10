@@ -4,7 +4,6 @@
 	<groupId>br.com.rostroweb</groupId>
 	<artifactId>rostrodblib</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 	<name>RostroDbLib</name>
 	<prerequisites>
 		<maven>3.1.0</maven>
@@ -44,7 +43,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.1</version>
+			<version>5.1.33</version>
 		</dependency>
 
 		<dependency>
@@ -117,6 +116,11 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.jboss.weld</groupId>
+			<artifactId>weld-core</artifactId>
+			<version>2.2.5.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -132,6 +136,9 @@
 					<optimize>true</optimize>
 				</configuration>
 			</plugin>
+
+
+
 
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
 				<version>${version.plugin.war}</version> <configuration> <failOnMissingWebXml>false</failOnMissingWebXml> 
