@@ -19,6 +19,14 @@ public class TesteDois implements x {
 	        return "World !!!";
 	    }
 
+	public TesteDois() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	 
+	 
+	 
+
 	
 	 
 	
