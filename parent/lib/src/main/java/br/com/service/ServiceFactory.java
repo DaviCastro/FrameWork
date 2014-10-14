@@ -3,7 +3,10 @@ package br.com.service;
 import java.lang.reflect.ParameterizedType;
 
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Named;
 
@@ -21,22 +24,25 @@ public class ServiceFactory {
 	@Produces
 	@Dependent
 	@AServiceQualifier
-	public static <T> Service<T> getService(InjectionPoint ip) {
-		try {
-			ParameterizedType type = (ParameterizedType) ip.getType();
+	public <T> Service<T> getService(InjectionPoint ip, BeanManager bm) {
 
-			Class<?> entityClazz = (Class<?>) type.getActualTypeArguments()[0];
+		ParameterizedType type = (ParameterizedType) ip.getType();
 
-			return (Service<T>) entityClazz
-					.getAnnotation(br.com.annotation.AService.class).service()
-					.newInstance();
+		Class<?> entityClazz = (Class<?>) type.getActualTypeArguments()[0];
 
-		} catch (InstantiationException e) {
-			logger.error(e);
-		} catch (IllegalAccessException e) {
-			logger.error(e);
-		}
-		return null;
+		Class clazz = entityClazz.getAnnotation(
+				br.com.annotation.AService.class).service();
+
+		return (Service<T>) getBeanByIntefaceClass(bm, clazz);
 
 	}
+
+	@SuppressWarnings("unchecked")
+	private Object getBeanByIntefaceClass(BeanManager bm, Class clazz) {
+		
+		Bean bean = bm.getBeans(clazz).iterator().next();
+		Object o = bm.getContext(bean.getScope()).get(bean, bm.createCreationalContext(bean));
+		return o;
+	}
+
 }

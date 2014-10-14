@@ -13,13 +13,13 @@ import br.com.annotation.AAutoComplete;
 import br.com.annotation.AHbnDao;
 import br.com.annotation.AService;
 import br.com.dao.Identifiable;
-import br.com.dao.hbn.HbnAlbumDao;
-import br.com.service.AlbumServiceImpl;
+import br.com.interfaceDao.AlbumDao;
+import br.com.service.AlbumService;
 
 @Entity
 @Table(name = "Album")
-@AService(service=AlbumServiceImpl.class)
-@AHbnDao(hbnDao=HbnAlbumDao.class)
+@AService(service=AlbumService.class)
+@AHbnDao(hbnDao=AlbumDao.class)
 public class Album implements Serializable, Identifiable {
 
 	public Album(Integer id, String nome, String descricao) {

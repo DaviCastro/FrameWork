@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.annotation.ADaoQualifier;
 import br.com.annotation.AServiceQualifier;
-import br.com.dao.Dao;
+import br.com.exception.DbLibException;
+import br.com.interfaceDao.AlbumDao;
 import br.com.pojo.Album;
+import br.com.service.AlbumService;
 import br.com.service.Service;
 import br.com.util.TesteInject;
 
@@ -21,22 +22,34 @@ public class MainTeste extends HttpServlet {
 
 	@Inject
 	TesteInject d;
-	
-	@Inject @AServiceQualifier
+
+	@Inject
+	@AServiceQualifier
 	Service<Album> servi;
-	
-	@Inject @ADaoQualifier
-	Dao<Album> dao;
+
+	@Inject
+	AlbumDao dao;
+
+	@Inject
+	AlbumService serv;
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-	
+
+		((AlbumService) servi).teste();
+
+		try {
+			servi.findAll();
+		} catch (DbLibException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		d.imprimi();
-		
-		
+
 		super.doGet(req, resp);
 	}
 

@@ -4,7 +4,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -32,7 +35,7 @@ import br.com.annotation.AHbnDao;
 public class DaoFactory {
 
 	protected static final Logger logger = Logger.getLogger(DaoFactory.class);
-	private static Class<? extends Annotation> annotation = AHbnDao.class;
+	// private static Class<? extends Annotation> annotation = AHbnDao.class;
 	@PersistenceContext
 	EntityManager s;
 
@@ -40,25 +43,36 @@ public class DaoFactory {
 	@Produces
 	@Dependent
 	@ADaoQualifier
-	public <T> Dao<T> getDao(InjectionPoint ip) {
+	public <T> Dao<T> getDao(InjectionPoint ip, BeanManager bm) {
 		try {
 
 			ParameterizedType type = (ParameterizedType) ip.getType();
 
 			Class<?> entityClazz = (Class<?>) type.getActualTypeArguments()[0];
 
-			return (Dao<T>) entityClazz
-					.getAnnotation(br.com.annotation.AHbnDao.class).hbnDao()
-					.newInstance();
-		} catch (InstantiationException e) {
-			logger.error(e);
-		} catch (IllegalAccessException e) {
-			logger.error(e);
+			Class<?> hbnDaoClass = entityClazz.getAnnotation(
+					br.com.annotation.AHbnDao.class).hbnDao();
+
+			return (Dao<T>) getBeanByIntefaceClass(bm, hbnDaoClass);
+
 		} catch (IllegalArgumentException e) {
 			logger.error(e);
 		} catch (SecurityException e) {
 			logger.error(e);
 		}
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	private Object getBeanByIntefaceClass(BeanManager bm, Class clazz) {
+		Bean bean = bm.getBeans(clazz).iterator().next();
+		/**
+		 * Nao faco ideia do porque do codigo debaixo funcionar e o comentando
+		 * nao CreationalContext ctx = bm.createCreationalContext(bean); Object
+		 * o = bm.getReference(bean, bean.getBeanClass(), ctx);
+		 */
+		Object o = bm.getContext(bean.getScope()).get(bean,
+				bm.createCreationalContext(bean));
+		return o;
 	}
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import br.com.annotation.ADaoQualifier;
 import br.com.dao.Dao;
@@ -24,7 +23,6 @@ import br.com.util.OrderUtil;
  * @param <T>
  * @param <DAO>
  */
-@Named
 public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 		implements Service<T> {
 
@@ -34,31 +32,7 @@ public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 
 	public GenericService() {
 		super();
-
-		/**
-		 * Recupera a referencia do dao<T> com base no objeto gerado na classe
-		 * filha;
-		 */
-		// dao = createDao();
 	}
-
-	/**
-	 * Metodo que devéra ser implementado pela classe filha Service para que a
-	 * classe GenericSerice pegue a referencia correta do DAO do pojo em
-	 * questao<T>
-	 * 
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	/*
-	 * public DAO createDao() { try { return (DAO)
-	 * DaoFactory.getInstance().getDao(createData()); } catch
-	 * (InstantiationException e) {
-	 * 
-	 * } catch (IllegalAccessException e) {
-	 * 
-	 * } return null; }
-	 */
 	/**
 	 * Metodo responsavel por criar um objeto do tipo <T>
 	 * 

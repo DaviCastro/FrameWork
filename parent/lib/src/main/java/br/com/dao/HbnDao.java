@@ -3,8 +3,6 @@ package br.com.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -26,8 +24,6 @@ import br.com.util.OrderUtil;
  * 
  * @param <T>
  */
-@Stateless
-@Named("hbnDao")
 public class HbnDao<T> implements Dao<T> {
 	@PersistenceContext
 	protected EntityManager conexao;
