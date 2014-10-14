@@ -1,63 +1,51 @@
 package main.teste;
 
-import java.io.IOException;
+import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
 
-import br.com.annotation.AServiceQualifier;
 import br.com.exception.DbLibException;
-import br.com.interfaceDao.AlbumDao;
 import br.com.pojo.Album;
 import br.com.service.AlbumService;
-import br.com.service.Service;
-import br.com.util.TesteInject;
 
-@WebServlet("/teste")
-public class MainTeste extends HttpServlet {
-
-	@Inject
-	TesteInject d;
-
-	@Inject
-	@AServiceQualifier
-	Service<Album> servi;
+@Path("teste")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+@Stateless
+@ApplicationPath("/rest")
+public class MainTeste extends Application {
 
 	@Inject
-	AlbumDao dao;
+	AlbumService albumService;
 
-	@Inject
-	AlbumService serv;
-
-	private static final long serialVersionUID = 1L;
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		((AlbumService) servi).teste();
-
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Album> recuperaAlbum() {
 		try {
-			servi.findAll();
+			
+			albumService.findAll();
+			Album album = new Album();
+			album.setNome("Teste");
+			album.setDescricao("jose");
+
+			albumService.save(album);
+
+			return albumService.findAll();
+
 		} catch (DbLibException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 
-		d.imprimi();
-
-		super.doGet(req, resp);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
 	}
 
 }

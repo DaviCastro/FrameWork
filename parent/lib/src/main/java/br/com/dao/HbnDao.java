@@ -55,7 +55,6 @@ public class HbnDao<T> implements Dao<T> {
 		try {
 			conexao.persist(entity);
 			conexao.flush();
-			;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DbLibException("Erro ao executar metodo save", e);
