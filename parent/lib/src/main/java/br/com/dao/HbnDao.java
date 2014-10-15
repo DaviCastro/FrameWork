@@ -26,7 +26,7 @@ import br.com.util.OrderUtil;
  */
 public class HbnDao<T> implements Dao<T> {
 	@PersistenceContext
-	protected EntityManager conexao;
+	protected EntityManager manager;
 	private Class<T> persistentClass;
 
 	protected static final Logger logger = Logger.getLogger(HbnDao.class);
@@ -53,8 +53,8 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public void save(T entity) throws DbLibException {
 		try {
-			conexao.persist(entity);
-			conexao.flush();
+			manager.persist(entity);
+			manager.flush();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DbLibException("Erro ao executar metodo save", e);
@@ -68,12 +68,12 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public List<T> findByExample(T entity) throws DbLibException {
 		try {
-			Session hibernateSession = (Session) conexao.getDelegate();
+			Session hibernateSession = (Session) manager.getDelegate();
 			/**
 			 * Pulo do gato para hibernate nao manter cache da entidade
 			 * pesquisada
 			 */
-			conexao.detach(entity);
+			manager.detach(entity);
 			Criteria criteria = hibernateSession.createCriteria(getTypeClass());
 			criteria.add(Example.create(entity).ignoreCase()
 					.enableLike(MatchMode.START));
@@ -88,12 +88,12 @@ public class HbnDao<T> implements Dao<T> {
 	public List<T> findByExample(T entity, int startingAt, int maxPerPage)
 			throws DbLibException {
 		try {
-			Session hibernateSession = (Session) conexao.getDelegate();
+			Session hibernateSession = (Session) manager.getDelegate();
 			/**
 			 * Pulo do gato para hibernate nao manter cache da entidade
 			 * pesquisada
 			 */
-			conexao.detach(entity);
+			manager.detach(entity);
 			Criteria criteria = hibernateSession.createCriteria(getTypeClass());
 			criteria.add(Example.create(entity).ignoreCase()
 					.enableLike(MatchMode.START));
@@ -110,12 +110,12 @@ public class HbnDao<T> implements Dao<T> {
 	public List<T> findByExample(T entity, int startingAt, int maxPerPage,
 			List<OrderUtil> order) throws DbLibException {
 		try {
-			Session hibernateSession = (Session) conexao.getDelegate();
+			Session hibernateSession = (Session) manager.getDelegate();
 			/**
 			 * Pulo do gato para hibernate nao manter cache da entidade
 			 * pesquisada
 			 */
-			conexao.detach(entity);
+			manager.detach(entity);
 			Criteria criteria = hibernateSession.createCriteria(getTypeClass());
 			criteria.add(Example.create(entity).ignoreCase()
 					.enableLike(MatchMode.START));
@@ -141,7 +141,7 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public List<T> findAll() throws DbLibException {
 		try {
-			Session hibernateSession = (Session) conexao.getDelegate();
+			Session hibernateSession = (Session) manager.getDelegate();
 			Criteria criteria = hibernateSession.createCriteria(getTypeClass());
 			return (List<T>) criteria.list();
 		} catch (Exception e) {
@@ -157,9 +157,9 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public void remove(T entity) throws DbLibException {
 		try {
-			entity = conexao.merge(entity);
-			conexao.remove(entity);
-			conexao.flush();
+			entity = manager.merge(entity);
+			manager.remove(entity);
+			manager.flush();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DbLibException("Erro ao executar metodo remove", e);
@@ -188,7 +188,7 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public T findOneByExample(T entity) throws DbLibException {
 		try {
-			Session hibernateSession = (Session) conexao.getDelegate();
+			Session hibernateSession = (Session) manager.getDelegate();
 			Criteria criteria = hibernateSession.createCriteria(getTypeClass());
 			criteria.add(Example.create(entity));
 			return (T) criteria.uniqueResult();
@@ -205,8 +205,8 @@ public class HbnDao<T> implements Dao<T> {
 	 */
 	public void merge(T entity) throws DbLibException {
 		try {
-			conexao.merge(entity);
-			conexao.flush();
+			manager.merge(entity);
+			manager.flush();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DbLibException("Erro ao executar metodo merge", e);
@@ -219,11 +219,16 @@ public class HbnDao<T> implements Dao<T> {
 	 * fornecido
 	 */
 	public int rowCount(T entity) throws DbLibException {
-		Session hibernateSession = (Session) conexao.getDelegate();
+		Session hibernateSession = (Session) manager.getDelegate();
 		Criteria criteria = hibernateSession.createCriteria(getTypeClass());
 		criteria.add(Example.create(entity).ignoreCase()
 				.enableLike(MatchMode.START));
 		return ((Number) criteria.setProjection(Projections.rowCount())
 				.uniqueResult()).intValue();
+	}
+
+	@Override
+	public T findById(Long id) throws DbLibException {
+		return manager.find(getTypeClass(), id);
 	}
 }

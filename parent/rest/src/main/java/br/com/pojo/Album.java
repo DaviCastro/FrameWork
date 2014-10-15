@@ -22,7 +22,7 @@ import br.com.service.AlbumService;
 @AHbnDao(hbnDao=AlbumDao.class)
 public class Album implements Serializable, Identifiable {
 
-	public Album(Integer id, String nome, String descricao) {
+	public Album(Long id, String nome, String descricao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,7 +41,7 @@ public class Album implements Serializable, Identifiable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 	@Column(name = "nome")
 	@AAutoComplete
 	private String nome;
@@ -49,11 +49,11 @@ public class Album implements Serializable, Identifiable {
 	@Column(name = "descricao")
 	private String descricao;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

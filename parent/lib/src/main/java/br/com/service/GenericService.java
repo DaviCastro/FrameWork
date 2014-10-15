@@ -94,13 +94,13 @@ public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 	}
 
 	/**
-	 * Metodo que chama o dao em questao para Search
+	 * Metodo que chama o dao em questao para find
 	 */
-	public List<T> search(T entity) throws DbLibException {
+	public List<T> find(T entity) throws DbLibException {
 		return dao.findByExample(entity);
 	}
 
-	public List<T> search(T entity, int startingAt, int maxPerPage)
+	public List<T> find(T entity, int startingAt, int maxPerPage)
 			throws DbLibException {
 		return dao.findByExample(entity, startingAt, maxPerPage);
 	}
@@ -109,11 +109,11 @@ public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 		return dao.findAll();
 	}
 
-	public T searchOne(T entity) throws DbLibException {
+	public T findOne(T entity) throws DbLibException {
 		return dao.findOneByExample(entity);
 	}
 
-	public List<T> search(T entity, int startingAt, int maxPerPage,
+	public List<T> find(T entity, int startingAt, int maxPerPage,
 			List<OrderUtil> order) throws DbLibException {
 		return dao.findByExample(entity, startingAt, maxPerPage, order);
 	}
@@ -121,45 +121,10 @@ public abstract class GenericService<T extends Identifiable, DAO extends Dao<T>>
 	public int rowCount(T entity) throws DbLibException {
 		return dao.rowCount(entity);
 	}
-
-	public void beforeInsert(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void afterInsert(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void beforeDelete(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void afterDelete(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void beforeSearch(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void afterSearch(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void beforeUpdate(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void afterUpdate(T entity) throws DbLibException {
-		// TODO Auto-generated method stub
-
+	
+	public T findById(Long id) throws DbLibException{	
+		return dao.findById(id);
+		
 	}
 
 }

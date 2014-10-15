@@ -71,6 +71,8 @@ public interface Dao<T> {
 	 * @return
 	 */
 	public List<T> findAll() throws DbLibException;
+	
+	public T findById(Long id) throws DbLibException;
 
 	/**
 	 * Recupera o tipo da classe
