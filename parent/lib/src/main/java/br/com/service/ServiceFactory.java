@@ -19,7 +19,7 @@ public class ServiceFactory {
 	protected static final Logger logger = Logger
 			.getLogger(ServiceFactory.class);
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Produces
 	@Dependent
 	@AServiceQualifier
@@ -36,7 +36,7 @@ public class ServiceFactory {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private Object getBeanByIntefaceClass(BeanManager bm, Class clazz) {
 		
 		Bean bean = bm.getBeans(clazz).iterator().next();

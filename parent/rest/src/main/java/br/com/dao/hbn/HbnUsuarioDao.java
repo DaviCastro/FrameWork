@@ -3,7 +3,6 @@ package br.com.dao.hbn;
 import javax.ejb.Stateless;
 
 import br.com.dao.HbnDao;
-import br.com.exception.DbLibException;
 import br.com.interfaceDao.UsuarioDao;
 import br.com.pojo.Usuario;
 

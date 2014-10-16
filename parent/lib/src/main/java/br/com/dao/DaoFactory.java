@@ -60,7 +60,7 @@ public class DaoFactory {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private Object getBeanByIntefaceClass(BeanManager bm, Class clazz) {
 		Bean bean = bm.getBeans(clazz).iterator().next();
 		/**
