@@ -1,0 +1,24 @@
+<div class="container-fluid">
+	<div class=row-fluid>
+		<div class="span3">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Albuns</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each album in controller}}
+					<tr>
+						<td>{{#link-to 'album' album}}{{album.id}} - {{album.nome}} {{/link-to}}</td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	<span class="label label-primary"> Albuns: {{albumContador}}</span>
+	{{outlet}}
+</div>
+

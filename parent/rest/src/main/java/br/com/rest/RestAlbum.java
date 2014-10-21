@@ -1,7 +1,5 @@
 package br.com.rest;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
@@ -20,11 +18,15 @@ import br.com.exception.DbLibException;
 import br.com.pojo.Album;
 import br.com.service.AlbumService;
 
-@Path("albuns")
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+
+@Path("albums")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Stateless
-@ApplicationPath("app")
+@ApplicationPath("/rest")
 public class RestAlbum extends Application {
 
 	@Inject
@@ -32,11 +34,17 @@ public class RestAlbum extends Application {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Album> getAll() {
+	public String getAll() {
 		try {
 
-			return albumService.findAll();
+			Gson gson = new GsonBuilder().create();
+			/*JsonArray myCustomArray = gson.toJsonTree(albumService.findAll())
+					.getAsJsonArray();*/
+			JsonObject a = new JsonObject();
 
+			a.add(Album.class.getSimpleName(),
+					gson.toJsonTree(albumService.findAll()));
+			return a.toString();
 		} catch (DbLibException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

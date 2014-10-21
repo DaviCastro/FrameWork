@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import br.com.annotation.AAutoComplete;
 import br.com.annotation.AHbnDao;
 import br.com.annotation.AService;
@@ -20,6 +24,7 @@ import br.com.service.AlbumService;
 @Table(name = "Album")
 @AService(service=AlbumService.class)
 @AHbnDao(hbnDao=AlbumDao.class)
+@JsonRootName("album")
 public class Album implements Serializable, Identifiable {
 
 	public Album(Long id, String nome, String descricao) {
