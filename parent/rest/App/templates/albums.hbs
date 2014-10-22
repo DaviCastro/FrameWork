@@ -1,24 +1,28 @@
-<div class="container-fluid">
-	<div class=row-fluid>
-		<div class="span3">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Albuns</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each album in controller}}
-					<tr>
-						<td>{{#link-to 'album' album}}{{album.id}} - {{album.nome}} {{/link-to}}</td>
-					</tr>
-					{{/each}}
-				</tbody>
-			</table>
+<div class="col-xs-6">
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+
+			<div class="pull-right">
+				<button class="button btn btn-default btn-sm">{{#link-to
+					'albums.create'}} Novo {{/link-to}}</button>
+			</div>
+			<h3 class="panel-title">Albuns</h3>
+			<div class="clearfix"></div>
 
 		</div>
+		<ul class="list-group-item">
+			{{#each album in controller}}
+			<li class="list-group-item">{{#link-to 'album'
+				album}}{{album.id}} - {{album.nome}} {{/link-to}}</li> {{/each}}
+		</ul>
+		<div class="panel-footer">
+			<span class="label label-primary"> Albuns: {{albumContador}}</span>
+		</div>
 	</div>
-	<span class="label label-primary"> Albuns: {{albumContador}}</span>
-	{{outlet}}
 </div>
+
+
+{{outlet}}
+
 

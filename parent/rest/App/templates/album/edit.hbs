@@ -1,7 +1,23 @@
-<div class="form-group">
-<label>Nome do Album</label>
-{{input value=nome}}
-<label>Descricao do Album</label>
-{{input value=descricao}}
-<button class="btn btn-default" {{action 'salvar'}} >Salvar</button>
+<div class="col-xs-6">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<div class="pull-right">
+				<button class="btn btn-default"{{action 'salvar'}} >Salvar</button>
+			</div>
+			<h3 class="panel-tittle">Editar</h3>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<div class="input-group input-group-sm">
+						<label for="nome">Nome do Album</label> {{view App.MyText
+						value=nome placeholder="Username" class='form-control' id="nome"
+						}} <label for="descricao">Descricao do ALbum</label> {{view
+						App.MyText placeholder="Username" value=descricao
+						class="form-control" id="descricao"}} <br />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

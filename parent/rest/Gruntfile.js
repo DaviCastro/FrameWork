@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 						}
 					}
 				},*/
-				// copia as depedencias do bower para o index.html
+			/*	// copia as depedencias do bower para o index.html
 				wiredep : {
 					options : {
 						directory : '<%= config.path.webapp.root %>/lib'
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
 						ignorePath : '<%= config.path.webapp.root %>'
 
 					}
-				},
+				},*/
 				// automaticamente verifica mudanca no arquivos e executa os
 				// plugins
 				watch : {
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 				concat : {
 					dist : {
 						src : [ 'App/js/*.js', 'App/models/*.js',
-								'App/routes/*.js', 'App/controllers/*.js', ],
+								'App/routes/*.js', 'App/controllers/*.js','App/views/*.js' ],
 						dest : '<%= config.path.webapp.root %>/js/app.min.js',
 					},
 				},
@@ -116,10 +116,8 @@ module.exports = function(grunt) {
 			});
 
 	// Tarefas que serão executadas
-	grunt.registerTask('default', [ 'emberTemplates', 'concat', 'less',
-			'wiredep' ]);
+	grunt.registerTask('default', [ 'emberTemplates', 'concat', 'less']);
 	grunt.registerTask('w', [ 'watch' ]);
-	grunt.registerTask('i', [ 'copy:build', 'bower-install-simple', 'less',
-			'emberTemplates', 'uglify', 'wiredep' ]);
+	grunt.registerTask('i', [  'bower-install-simple' ]);
 
 };
