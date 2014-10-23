@@ -1,4 +1,11 @@
-App.AlbumController = Ember.ObjectController.extend({
+App.AlbumController = App.BasicObjectController.extend({
+	init:function (){
+		var acoes = Ember.ArrayController.create();
+		var acao = App.Acao.create();
+		acao.set('nome','Salvar');
+		acao.set('acao','Salvar');
+		acoes.pushObject(acao);
+	},
 
 	actions : {
 			edit:function(){

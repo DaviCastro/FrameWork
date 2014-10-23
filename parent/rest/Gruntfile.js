@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 				less : {
 					development : {
 						files : {
-							"<%= config.path.webapp.root %>/css/app.css" : "App/lib/css/appcss.less"
+							"<%= config.path.webapp.root %>/css/app.css" : "App/css/appcss.less"
 						}
 					}
 				},
