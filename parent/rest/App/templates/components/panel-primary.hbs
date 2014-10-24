@@ -1,6 +1,22 @@
-<div {{bind-attr class=bootStrapClass}} >
+
+<div {{bind-attr class=bootStrapClass}}>
 	<div class="panel-heading">
+
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown">
+				Acoes <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				{{#each acoes}}
+				<li><a href="#" {{action 'panelActions' this on='click'}}>{{nome}}</a></li>
+				{{/each}}
+			</ul>
+
+		</div>
 		<h3 class="panel-title">{{title}}</h3>
 	</div>
 	<div class="panel-body">{{yield}}</div>
 </div>
+
+{{outlet}}

@@ -1,13 +1,13 @@
-App.AlbumController = App.BasicObjectController.extend({
-	init:function (){
-		var acoes = Ember.ArrayController.create();
-		var acao = App.Acao.create();
-		acao.set('nome','Salvar');
-		acao.set('acao','Salvar');
-		acoes.pushObject(acao);
-	},
-
+App.AlbumController = Ember.ObjectController.extend({
+	
+	criarAcoes : [Em.Object.create({nome: 'Editar'},{acao:'edit'}),Em.Object.create({nome: 'Deletar'},{acao:'delete'})],
+	
 	actions : {
+		
+		panelActions:function(action){
+			this.send(action);
+		},
+		
 			edit:function(){
 				this.transitionToRoute('album.edit'); 
 			},

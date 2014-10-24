@@ -1,22 +1,9 @@
 
-
+<!-- e necessario criar no componente um atributo com o nome da acao do controller para ser possivel essa acao do compoente 
+chegar no controler 'panelActions' -->
 <div class="col-xs-6">
-		
-		
-		{{#each acoes}}
-		<h1>sss</h1>
-		{{/each}}
-
-
-
-
-	<div class="btn-group pull-right">
-		<button class="btn btn-default"{{action 'edit' }}>Editar</button>
-		<button {{action 'delete'}} class="btn btn-danger" data-toggle="modal"
-			data-target="#myModal">deletar</button>
-	</div>
-	{{#panel-primary title="Album" bootStrapClass="panel panel-success"}} <span
-		class="label label-default">Nome: </span> {{nome}} <span
+	{{#panel-primary title="Album" bootStrapClass="panel panel-success" acoes=criarAcoes panelActions='panelActions'}}
+	 <span class="label label-default">Nome: </span> {{nome}} <span
 		class="label label-default">Descricao: </span> {{descricao}} {{#if
 	deleteMode}}
 	<!-- Modal -->

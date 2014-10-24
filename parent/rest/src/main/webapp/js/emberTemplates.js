@@ -5,26 +5,20 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  
-  data.buffer.push("\r\n		<h1>sss</h1>\r\n		");
-  }
-
-function program3(depth0,data) {
-  
   var buffer = '', stack1;
-  data.buffer.push(" <span\r\n		class=\"label label-default\">Nome: </span> ");
+  data.buffer.push("\r\n	 <span class=\"label label-default\">Nome: </span> ");
   stack1 = helpers._triageMustache.call(depth0, "nome", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <span\r\n		class=\"label label-default\">Descricao: </span> ");
   stack1 = helpers._triageMustache.call(depth0, "descricao", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "deleteMode", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "deleteMode", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
   return buffer;
   }
-function program4(depth0,data) {
+function program2(depth0,data) {
   
   var buffer = '';
   data.buffer.push("\r\n	<!-- Modal -->\r\n	<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\"\r\n		aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n		<div class=\"modal-dialog\">\r\n			<div class=\"modal-content\">\r\n				<div class=\"modal-header\">\r\n					<button ");
@@ -37,18 +31,13 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("\r\n\r\n<div class=\"col-xs-6\">\r\n		\r\n		\r\n		");
-  stack1 = helpers.each.call(depth0, "acoes", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\r\n\r\n\r\n\r\n\r\n	<div class=\"btn-group pull-right\">\r\n		<button class=\"btn btn-default\"");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "edit", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(">Editar</button>\r\n		<button ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "delete", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"btn btn-danger\" data-toggle=\"modal\"\r\n			data-target=\"#myModal\">deletar</button>\r\n	</div>\r\n	");
+  data.buffer.push("\r\n<!-- e necessario criar no componente um atributo com o nome da acao do controller para ser possivel essa acao do compoente \r\nchegar no controler 'panelActions' -->\r\n<div class=\"col-xs-6\">\r\n	");
   stack1 = (helper = helpers['panel-primary'] || (depth0 && depth0['panel-primary']),options={hash:{
     'title': ("Album"),
-    'bootStrapClass': ("panel panel-success")
-  },hashTypes:{'title': "STRING",'bootStrapClass': "STRING"},hashContexts:{'title': depth0,'bootStrapClass': depth0},inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "panel-primary", options));
+    'bootStrapClass': ("panel panel-success"),
+    'acoes': ("criarAcoes"),
+    'panelActions': ("panelActions")
+  },hashTypes:{'title': "STRING",'bootStrapClass': "STRING",'acoes': "ID",'panelActions': "STRING"},hashContexts:{'title': depth0,'bootStrapClass': depth0,'acoes': depth0,'panelActions': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "panel-primary", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\r\n\r\n</div>\r\n");
   stack1 = helpers._triageMustache.call(depth0, "outlet", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
@@ -117,7 +106,7 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div class=\"col-xs-6\">\r\n\r\n	<div class=\"panel panel-primary\">\r\n		<div class=\"panel-heading\">\r\n\r\n			<div class=\"pull-right\">");
+  data.buffer.push("<div class=\"col-xs-6\">\r\n	<div class=\"panel panel-primary\">\r\n		<div class=\"panel-heading\">\r\n\r\n			<div class=\"pull-right\">");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
     'class': ("button btn btn-default btn-sm")
   },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "albums.create", options) : helperMissing.call(depth0, "link-to", "albums.create", options));
@@ -139,20 +128,39 @@ function program4(depth0,data) {
 Ember.TEMPLATES["components/panel-primary"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push("\r\n				<li><a href=\"#\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "panelActions", "", {hash:{
+    'on': ("click")
+  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  data.buffer.push(">");
+  stack1 = helpers._triageMustache.call(depth0, "nome", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</a></li>\r\n				");
+  return buffer;
+  }
 
-  data.buffer.push("<div ");
+  data.buffer.push("\r\n<div ");
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': ("bootStrapClass")
   },hashTypes:{'class': "ID"},hashContexts:{'class': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(" >\r\n	<div class=\"panel-heading\">\r\n		<h3 class=\"panel-title\">");
+  data.buffer.push(">\r\n	<div class=\"panel-heading\">\r\n\r\n		<div class=\"btn-group pull-right\">\r\n			<button type=\"button\" class=\"btn btn-default dropdown-toggle\"\r\n				data-toggle=\"dropdown\">\r\n				Acoes <span class=\"caret\"></span>\r\n			</button>\r\n			<ul class=\"dropdown-menu\" role=\"menu\">\r\n				");
+  stack1 = helpers.each.call(depth0, "acoes", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\r\n			</ul>\r\n\r\n		</div>\r\n		<h3 class=\"panel-title\">");
   stack1 = helpers._triageMustache.call(depth0, "title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</h3>\r\n	</div>\r\n	<div class=\"panel-body\">");
   stack1 = helpers._triageMustache.call(depth0, "yield", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</div>\r\n</div>");
+  data.buffer.push("</div>\r\n</div>\r\n\r\n");
+  stack1 = helpers._triageMustache.call(depth0, "outlet", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\r\n");
   return buffer;
   
 });

@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 				concat : {
 					dist : {
 						src : [ 'App/js/*.js', 'App/models/*.js',
-								'App/routes/*.js', 'App/controllers/*.js','App/views/*.js' ],
+								'App/routes/*.js', 'App/controllers/*.js','App/components/*.js', 'App/views/*.js' ],
 						dest : '<%= config.path.webapp.root %>/js/app.min.js',
 					},
 				},
