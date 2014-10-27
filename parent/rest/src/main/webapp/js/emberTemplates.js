@@ -1,7 +1,7 @@
 Ember.TEMPLATES["album"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, helper, options, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -13,21 +13,6 @@ function program1(depth0,data) {
   stack1 = helpers._triageMustache.call(depth0, "descricao", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" ");
-  stack1 = helpers['if'].call(depth0, "deleteMode", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push(" ");
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = '';
-  data.buffer.push("\r\n	<!-- Modal -->\r\n	<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\"\r\n		aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n		<div class=\"modal-dialog\">\r\n			<div class=\"modal-content\">\r\n				<div class=\"modal-header\">\r\n					<button ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "cancelDelete", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" type=\"button\" class=\"close\"\r\n						data-dismiss=\"modal\">\r\n						<span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n					</button>\r\n					<h4 class=\"modal-title\" id=\"myModalLabel\">Album</h4>\r\n				</div>\r\n				<div class=\"modal-body\">Tem certeza que quer deletar este\r\n					registro?</div>\r\n				<div class=\"modal-footer\">\r\n					<button type=\"button\"\r\n						");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "cancelDelete", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"btn btn-default\"\r\n						data-dismiss=\"modal\">Cancelar</button>\r\n					<button type=\"button\"\r\n						");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "confirmDelete", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"btn btn-primary\">Confirmar</button>\r\n				</div>\r\n			</div>\r\n		</div>\r\n	</div>\r\n	");
   return buffer;
   }
 
@@ -39,7 +24,7 @@ function program2(depth0,data) {
     'panelActions': ("panelActions")
   },hashTypes:{'title': "STRING",'bootStrapClass': "STRING",'acoes': "ID",'panelActions': "STRING"},hashContexts:{'title': depth0,'bootStrapClass': depth0,'acoes': depth0,'panelActions': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "panel-primary", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\r\n\r\n</div>\r\n");
+  data.buffer.push("\r\n</div>\r\n");
   stack1 = helpers._triageMustache.call(depth0, "outlet", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\r\n\r\n");
@@ -133,7 +118,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push("\r\n				<li><a href=\"#\" ");
+  data.buffer.push("\r\n				<li><a href=\"#\"  ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "panelActions", "", {hash:{
     'on': ("click")
   },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
@@ -157,10 +142,13 @@ function program1(depth0,data) {
   data.buffer.push("</h3>\r\n	</div>\r\n	<div class=\"panel-body\">");
   stack1 = helpers._triageMustache.call(depth0, "yield", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</div>\r\n</div>\r\n\r\n");
-  stack1 = helpers._triageMustache.call(depth0, "outlet", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\r\n");
+  data.buffer.push("</div>\r\n</div>\r\n\r\n\r\n\r\n<!-- Modal -->\r\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\"\r\n	aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n	<div class=\"modal-dialog\">\r\n		<div class=\"modal-content\">\r\n			<div class=\"modal-header\">\r\n				<button ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "cancelDelete", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(" type=\"button\" class=\"close\"\r\n					data-dismiss=\"modal\">\r\n					<span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n				</button>\r\n				<h4 class=\"modal-title\" id=\"myModalLabel\">Album</h4>\r\n			</div>\r\n			<div class=\"modal-body\">Tem certeza que quer deletar este\r\n				registro?</div>\r\n			<div class=\"modal-footer\">\r\n				<button type=\"button\"\r\n					");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "cancelDelete", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(" class=\"btn btn-default\"\r\n					data-dismiss=\"modal\">Cancelar</button>\r\n				<button type=\"button\"\r\n					");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "confirmDelete", "", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
+  data.buffer.push(" class=\"btn btn-primary\">Confirmar</button>\r\n			</div>\r\n		</div>\r\n	</div>\r\n</div>\r\n");
   return buffer;
   
 });
