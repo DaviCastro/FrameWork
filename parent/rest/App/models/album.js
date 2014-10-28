@@ -1,4 +1,4 @@
 App.Album = DS.Model.extend({
-	nome: DS.attr('string'),
-	descricao: DS.attr('string')
+	name: DS.attr('string'),
+	description: DS.attr('string')
 });

@@ -9,16 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import br.com.annotation.AAutoComplete;
 import br.com.annotation.AHbnDao;
 import br.com.annotation.AService;
 import br.com.dao.Identifiable;
 import br.com.interfaceDao.AlbumDao;
 import br.com.service.AlbumService;
+
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 @Entity
 @Table(name = "Album")
@@ -30,8 +28,8 @@ public class Album implements Serializable, Identifiable {
 	public Album(Long id, String nome, String descricao) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
+		this.name = nome;
+		this.description = descricao;
 	}
 
 	public Album() {
@@ -49,10 +47,10 @@ public class Album implements Serializable, Identifiable {
 	private Long id;
 	@Column(name = "nome")
 	@AAutoComplete
-	private String nome;
+	private String name;
 
 	@Column(name = "descricao")
-	private String descricao;
+	private String description;
 
 	public Long getId() {
 		return id;
@@ -62,20 +60,20 @@ public class Album implements Serializable, Identifiable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
@@ -83,9 +81,9 @@ public class Album implements Serializable, Identifiable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((descricao == null) ? 0 : descricao.hashCode());
+				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -98,20 +96,20 @@ public class Album implements Serializable, Identifiable {
 		if (getClass() != obj.getClass())
 			return false;
 		Album other = (Album) obj;
-		if (descricao == null) {
-			if (other.descricao != null)
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!descricao.equals(other.descricao))
+		} else if (!description.equals(other.description))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}

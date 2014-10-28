@@ -1,6 +1,6 @@
 App.AlbumController = Ember.ObjectController.extend({
 	
-	criarAcoes : [Em.Object.create({nome: 'Editar'},{acao:'edit'}),Em.Object.create({nome: 'Deletar'},{acao:'delete'})],
+	arrayActions : [Em.Object.create({name: 'Edit'},{action:'edit'}),Em.Object.create({name: 'Delete'},{action:'delete'})],
 	
 	actions : {
 		
