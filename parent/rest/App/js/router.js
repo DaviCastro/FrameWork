@@ -1,8 +1,9 @@
 App.Router.map(function(){
 	this.resource('albums',function(){
-		this.resource('album',{ path: ':id' },function(){
+		this.resource('album',{ path: ':album_id' },function(){
 			this.route('edit');
 		});
+		
 		this.route('create');
 	});
 	

@@ -1,4 +1,4 @@
-App.AlbumsController = Ember.ArrayController.extend({
+App.AlbumsController = App.BasicArrayController.extend({
 	sortProperties : [ 'name' ],
 	sortAscending : true,
 
@@ -13,10 +13,6 @@ App.AlbumsController = Ember.ArrayController.extend({
 	}) ],
 
 	actions : {
-		panelActions : function(obj) {
-			this.send(obj);
-		},
-
 		newAlbum : function() {
 			this.transitionToRoute('albums.create');
 		}

@@ -136,7 +136,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push("\r\n		<div class=\"btn-group pull-right\">\r\n			<button type=\"button\" class=\"btn btn-default dropdown-toggle\"\r\n				data-toggle=\"dropdown\">\r\n				Actions <span class=\"caret\"></span>\r\n			</button>\r\n			<ul class=\"dropdown-menu\" role=\"menu\">\r\n				");
+  data.buffer.push("\r\n		<div style=\"margin-top: -1.3%\" class=\"btn-group pull-right\">\r\n			<button type=\"button\" class=\"btn btn-default dropdown-toggle\"\r\n				data-toggle=\"dropdown\">\r\n				Actions <span class=\"caret\"></span>\r\n			</button>\r\n			<ul class=\"dropdown-menu\" role=\"menu\">\r\n				");
   stack1 = helpers.each.call(depth0, "arrayActions", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\r\n			</ul>\r\n		</div>\r\n		");
@@ -231,10 +231,10 @@ function program1(depth0,data) {
   data.buffer.push("Albuns");
   }
 
-  data.buffer.push("\r\n<div class=\"col-xs-6\">\r\n");
+  data.buffer.push("\r\n<div class=\"col-xs-6\">\r\n	");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "albums", options) : helperMissing.call(depth0, "link-to", "albums", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\r\n</div>\r\n ");
+  data.buffer.push("\r\n</div>\r\n");
   return buffer;
   
 });
