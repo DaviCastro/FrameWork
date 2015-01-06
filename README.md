@@ -5,4 +5,7 @@ FrameWork
 * JAVA8
 * REST
 * CLIENTSIDE
+* HIBERNATE
+* CDI
+* EJB
 * MONGODB *
